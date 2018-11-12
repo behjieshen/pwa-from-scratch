@@ -3,10 +3,14 @@ var main = document.querySelector('main');
 var sources = document.querySelector('#sources');
 var defaultSource = 'techcrunch';
 
-window.addEventListener('load', async e => {
+window.addEventListener('load', async event => {
   updateNews();
   await updateSources();
   sources.value = defaultSource;
+
+  sources.addEventListener('change', event => {
+    updateNews(event.target.value);
+  });
 });
 
 async function updateSources() {
